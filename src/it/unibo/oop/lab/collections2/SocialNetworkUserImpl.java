@@ -1,7 +1,13 @@
 package it.unibo.oop.lab.collections2;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * 
@@ -18,6 +24,9 @@ import java.util.List;
  */
 public class SocialNetworkUserImpl<U extends User> extends UserImpl implements SocialNetworkUser<U> {
 
+	private Map<String, Set<U>> followed; 
+	private List<U> followers; 
+	
     /*
      * 
      * [FIELDS]
@@ -40,7 +49,9 @@ public class SocialNetworkUserImpl<U extends User> extends UserImpl implements S
      * 
      * 2) Define a further constructor where age is defaulted to -1
      */
-
+	 public SocialNetworkUserImpl(final String name, final String surname, final String user) {
+	        this(name, surname, user, -1);
+	 }
     /**
      * Builds a new {@link SocialNetworkUserImpl}.
      * 
@@ -56,6 +67,8 @@ public class SocialNetworkUserImpl<U extends User> extends UserImpl implements S
      */
     public SocialNetworkUserImpl(final String name, final String surname, final String user, final int userAge) {
         super(name, surname, user, userAge);
+        this.followed = new HashMap<>();
+        this.followers = new ArrayList<>();
     }
 
     /*
@@ -66,17 +79,24 @@ public class SocialNetworkUserImpl<U extends User> extends UserImpl implements S
 
     @Override
     public boolean addFollowedUser(final String circle, final U user) {
-        return false;
+    	if (this.followed.get(circle) == null) {
+    		this.followed.put(circle, new HashSet<>()); 		
+    	}
+    	return this.followed.get(circle).add(user);
     }
 
     @Override
     public Collection<U> getFollowedUsersInGroup(final String groupName) {
-        return null;
+      	var group = this.followed.get(groupName);
+      	if (group == null) {
+      		return new HashSet<U>();
+      	}
+      	return new HashSet<U>(group);
     }
 
     @Override
     public List<U> getFollowedUsers() {
-        return null;
+        return this.followers;
     }
 
 }
