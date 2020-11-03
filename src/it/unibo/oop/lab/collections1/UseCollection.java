@@ -35,7 +35,7 @@ public final class UseCollection {
     	list1.set(0, list1.get(list1.size() - 1));
     	list1.set(list1.size() - 1, swap);
     	
-    	for(Integer i : list1) {
+    	for(int i : list1) {
     		//System.out.println(i);
     	}
     	
@@ -108,8 +108,8 @@ public final class UseCollection {
         world.put("Africa", 38304000l);
         
         long sum = 0;
-        for(String key : world.keySet()) {
-        	sum += world.get(key);
+        for(long value : world.values()) {
+        	sum += value;
         }
         System.out.println("Sum = " + sum);
         
