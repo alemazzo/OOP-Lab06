@@ -27,31 +27,9 @@ public class SocialNetworkUserImpl<U extends User> extends UserImpl implements S
 	private Map<String, Set<U>> followed; 
 	private List<U> followers; 
 	
-    /*
-     * 
-     * [FIELDS]
-     * 
-     * Define any necessary field
-     * 
-     * In order to save the people followed by a user organized in groups, adopt
-     * a generic-type Map:
-     * 
-     * think of what type of keys and values would best suit the requirements
-     */
-
-    /*
-     * [CONSTRUCTORS]
-     * 
-     * 1) Complete the definition of the constructor below, for building a user
-     * participating in a social network, with 4 parameters, initializing:
-     * 
-     * - firstName - lastName - username - age and every other necessary field
-     * 
-     * 2) Define a further constructor where age is defaulted to -1
-     */
-	 public SocialNetworkUserImpl(final String name, final String surname, final String user) {
-	        this(name, surname, user, -1);
-	 }
+	public SocialNetworkUserImpl(final String name, final String surname, final String user) {
+		this(name, surname, user, -1);
+	}
     /**
      * Builds a new {@link SocialNetworkUserImpl}.
      * 
@@ -65,11 +43,11 @@ public class SocialNetworkUserImpl<U extends User> extends UserImpl implements S
      *            alias of the user, i.e. the way a user is identified on an
      *            application
      */
-    public SocialNetworkUserImpl(final String name, final String surname, final String user, final int userAge) {
-        super(name, surname, user, userAge);
-        this.followed = new HashMap<>();
-        this.followers = new ArrayList<>();
-    }
+	public SocialNetworkUserImpl(final String name, final String surname, final String user, final int userAge) {
+	    super(name, surname, user, userAge);
+	    this.followed = new HashMap<>();
+	    this.followers = new ArrayList<>();        
+	}
 
     /*
      * [METHODS]
@@ -87,11 +65,10 @@ public class SocialNetworkUserImpl<U extends User> extends UserImpl implements S
 
     @Override
     public Collection<U> getFollowedUsersInGroup(final String groupName) {
-      	var group = this.followed.get(groupName);
-      	if (group == null) {
-      		return new HashSet<U>();
+      	if (this.followed.containsKey(groupName)) {
+      		return new HashSet<U>(this.followed.get(groupName));
       	}
-      	return new HashSet<U>(group);
+      	return new HashSet<U>();
     }
 
     @Override
