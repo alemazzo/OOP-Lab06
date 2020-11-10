@@ -31,7 +31,7 @@ public class TestStrictBankAccount {
     	//Check transactions
     	for(int i = 0; i < 10; i++) {
     		try{
-    			b1.depositFromATM(1, 10);
+    			b1.deposit(1, 10);
     		} catch (Exception e) {
     			Assert.fail();
     		}    		
