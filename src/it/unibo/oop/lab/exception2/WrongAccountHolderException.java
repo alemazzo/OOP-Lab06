@@ -9,26 +9,8 @@ public class WrongAccountHolderException extends IllegalStateException {
 
 	public WrongAccountHolderException() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
-
-
-	public WrongAccountHolderException(String message, Throwable cause) {
-		super(message, cause);
-		// TODO Auto-generated constructor stub
-	}
-
-	public WrongAccountHolderException(String message) {
-		super(message);
-		// TODO Auto-generated constructor stub
-	}
-
-	public WrongAccountHolderException(Throwable cause) {
-		super(cause);
-		// TODO Auto-generated constructor stub
-	}
-	
 	/**
      * 
      * @return the string representation of instances of this class
